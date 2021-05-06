@@ -398,30 +398,17 @@ td {
     display: inline-block;
 }
 
-/* Hack to get pyhf logo on */
+/* Hack to get IRIS-HEP logo on */
 .title-slide:before {
     content: '';
     /* background: url("https://iris-hep.org/assets/logos/pyhf-logo.png") no-repeat; */
-    background: url("../assets/logos/logo_ATLAS.png") no-repeat;
-    background-size: 100% 100%;
-    width: 243px;
-    height: 128px;
-    position: absolute;
-    bottom: 0.8em;
-    right: 3.3em;
-    display: inline-block;
-}
-
-/* Even worse hack to get another logo on */
-.middle-logo {
-    content: '';
     background: url("../assets/logos/logo_IRIS-HEP.png") no-repeat;
     background-size: 100% 100%;
     width: 163px;
     height: 90px;
     position: absolute;
-    bottom: 1em;
-    left: 26em;
+    bottom: 2em;
+    right: 3.3em;
     display: inline-block;
 }
 
