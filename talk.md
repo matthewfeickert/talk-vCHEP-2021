@@ -1,76 +1,53 @@
 class: middle, center, title-slide
 count: false
 
-# Steps Towards Differentiable and
-# Scalable Physics Analyses at the LHC
+# Distributed statistical inference
+# with pyhf enabled through funcX
 
 .huge.blue[Matthew Feickert]<br>
 .huge[(University of Illinois at Urbana-Champaign)]
 <br><br>
 [matthew.feickert@cern.ch](mailto:matthew.feickert@cern.ch)
 
-[Argonne Lunch Seminar](https://indico.fnal.gov/event/46057/)
+[vCHEP 2021](https://indico.cern.ch/event/948465/)
 
-December 8th, 2020
+May 20th, 2021
 
 .middle-logo[]
 
 ---
-# Collaborators
+# Authors
+
+<br><br>
 
 .grid[
-.kol-1-3.center[
-.circle.width-40[![Lukas](figures/collaborators/heinrich.jpg)]
+.kol-1-4.center[
+.circle.width-80[![Lukas](figures/collaborators/heinrich.jpg)]
 
 [Lukas Heinrich](https://github.com/lukasheinrich)
 
 CERN
 ]
-.kol-1-3.center[
-.circle.width-40[![Giordon](figures/collaborators/stark.jpg)]
+.kol-1-4.center[
+.circle.width-80[![Matthew](https://avatars2.githubusercontent.com/u/5142394)]
+
+[Matthew Feickert](https://www.matthewfeickert.com/)
+
+Illinois
+]
+.kol-1-4.center[
+.circle.width-80[![Giordon](figures/collaborators/stark.jpg)]
 
 [Giordon Stark](https://github.com/kratsg)
 
 UCSC SCIPP
 ]
-.kol-1-3.center[
-.circle.width-40[![Alex](https://avatars1.githubusercontent.com/u/45009355)]
-
-[Alexander Held](https://github.com/alexander-held)
-
-NYU
-]
-]
-.grid[
 .kol-1-4.center[
-.circle.width-45[![Nathan](https://avatars2.githubusercontent.com/u/49782545)]
-
-[Nathan Simpson](https://github.com/phinate)
-
-Lund University
-]
-.kol-1-4.center[
-.circle.width-45[![Ben](https://avatars2.githubusercontent.com/u/8229875)]
+.circle.width-75[![Ben](https://avatars2.githubusercontent.com/u/8229875)]
 
 [Ben Galewsky](https://bengalewsky.github.io/about/)
 
 NCSA/Illinois
-]
-.kol-1-4.center[
-.circle.width-55[![Ricardo](https://ricardorocha.io/images/avatar.png)]
-
-
-[Ricardo Rocha](https://ricardorocha.io/)
-
-CERN
-]
-.kol-1-4.center[
-.circle.width-45[![Sinclert](https://avatars0.githubusercontent.com/u/6978377)]
-
-
-[Sinclert Pérez](https://sinclert.github.io/)
-
-NYU
 ]
 ]
 
