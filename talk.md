@@ -62,14 +62,84 @@ NCSA/Illinois
 ]
 
 ---
+# Problem statement
+
+- HPC facilities provide an opportunity to efficiently perform the statistical inference of LHC data
+- Can pose problems with orchestration and efficient scheduling
+- We can present a framework
+- ...
+- Throw in physics motivation for pMSSM scans and pseudo-experiments
+
+---
+# Fitting as a Service Methods and Technologies
+
+.kol-1-2[
+.bold[pyhf]
+]
+.kol-1-2[
+.bold[funcX]
+]
+
+---
+# Scheduling with funcX
+
+.kol-2-3[
+```python
+import json
+from pathlib import Path
+from time import sleep
+
+from funcx.sdk.client import FuncXClient
+from pyhf.contrib.utils import download
+
+
+def prepare_workspace(data):
+    import pyhf
+
+    return pyhf.Workspace(data)
+
+if __name__ == "__main__":
+    fxc = FuncXClient()
+    # Register function and execute on worker node
+    prepare_func = fxc.register_function(prepare_workspace):w
+    prepare_task = fxc.run(
+        bkgonly_workspace, endpoint_id=pyhf_endpoint, function_id=prepare_func
+    )
+```
+]
+.kol-1-3[
+- Points walking through code
+- Need to also fixup the code to make it fit
+]
+
+---
+# Scaling of Statistical Inference
+
+- RIVER
+- NCSA Bluewaters (CPU)
+- XSEDE Expanse (GPU JAX)
+
+---
+# Performance
+
+- Add results table
+
+---
 # Summary
 
-- Automatic differentiation gives a powerful tool in the form of differentiable programming
+- Demonstrated the ability to parallelize and accelerate statistical inference of physics analyses on
+HPC systems through a FaaS solution
 
 ---
 class: end-slide, center
 
 .large[Backup]
+
+---
+# Why funcX compared to Dask?
+
+- A question RE: Dask is sure to come up
+- We should be ready to have an answer in backup
 
 ---
 # References
