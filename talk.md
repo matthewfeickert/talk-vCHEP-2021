@@ -16,6 +16,16 @@ May 20th, 2021
 .middle-logo[]
 
 ---
+# Notes to self and reviewers
+
+<br><br>
+
+- Parallel session talk on .bold[Thursday, 2021-05-20]
+- Talk starts at .bold[15:13] CERN time (08:13 Illinois time)
+- Talk time: .bold[8 minutes] + 5 minutes for questions
+   - Need to focus on economy of time
+
+---
 # Authors
 
 <br><br>
