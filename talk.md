@@ -136,17 +136,15 @@ class: end-slide, center
 .large[Backup]
 
 ---
-# Why funcX compared to Dask?
+# Why use funcX as opposed to Dask?
 
-- FuncX Provides a _managed service_ secured by Globus Auth
-  
-- Endpoints can be set up by a site administrator and shared with authorized 
-  users through Globus Auth Groups
-  
-- Testing has shown that Dask struggles to scale up to thousands of nodes, 
-  whereas the funcX High Throughput Executor scales efficiently
-  
-![Scaling Comparison](https://parsl.readthedocs.io/en/stable/_images/strong-scaling.png)
+- funcX provides a _managed service_ secured by Globus Auth
+
+- Endpoints can be set up by a site administrator and shared with authorized users through Globus Auth Groups
+
+- Testing has shown that Dask struggles to .bold[scale up to thousands of nodes], whereas the funcX High Throughput Executor (HTEX) scales efficiently
+
+.center.width-80[![Scaling Comparison](https://parsl.readthedocs.io/en/stable/_images/strong-scaling.png)]
 
 ---
 # References
