@@ -72,12 +72,15 @@ NCSA/Illinois
 
 ---
 # Fitting as a Service Methods and Technologies
-
+<!--  -->
 .kol-1-2[
-.bold[pyhf]
+[.center.width-60[![pyhf-logo](https://raw.githubusercontent.com/scikit-hep/pyhf/master/docs/_static/img/pyhf-logo-small.png)]](https://pyhf.readthedocs.io/)
+- Pure Python implementation of the HistFactory statistical specification
 ]
 .kol-1-2[
-.bold[funcX]
+[.center.width-90[![funcX-light](figures/funcX-light.png)]](https://funcx.readthedocs.io/en/latest/)
+- High-performance FaaS platform
+- Allows users to register and then execute Python functions in "serverless supercomputing" workflow
 ]
 
 ---
