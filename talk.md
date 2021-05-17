@@ -194,8 +194,20 @@ def infer_hypotest(workspace, metadata, patches):
 .kol-1-3[
     <br><br>
 - As the analyst user, _define the functions_ that you want the funcX endpoint to execute
-- These are run as _individual jobs_ and so require all dependencies to be defined inside them
-   - e.g. `import pyhf`
+- These are run as _individual jobs_ and so require all dependencies of the function to .bold[be defined inside the function]
+
+.tiny[
+```python
+import numpy  # Not in execution scope
+
+def example_function():
+    import pyhf  # Import here
+
+    ...
+
+    pyhf.set_backend("jax")  # To use here
+```
+]
 ]
 
 ---
