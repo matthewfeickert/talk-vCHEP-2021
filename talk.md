@@ -74,11 +74,14 @@ NCSA/Illinois
 # Fitting as a Service Methods and Technologies
 <!--  -->
 .kol-1-2[
-[.center.width-60[![pyhf-logo](https://raw.githubusercontent.com/scikit-hep/pyhf/master/docs/_static/img/pyhf-logo-small.png)]](https://pyhf.readthedocs.io/)
-- Pure Python implementation of the HistFactory statistical specification
+[.center.width-50[![pyhf-logo](https://raw.githubusercontent.com/scikit-hep/pyhf/master/docs/_static/img/pyhf-logo-small.png)]](https://pyhf.readthedocs.io/)
+- Pure Python implementation of the `HistFactory` statistical specification for multi-bin histogram-based analysis
+- Supports multiple computational backends and optimizers (defaults of NumPy and SciPy)
+- JAX, TensorFlow, and PyTorch backends can leverage _hardware acceleration_ (GPUs, TPUs) and _automatic differentiation_
+- Can outperform C++ implementations of HistFactory
 ]
 .kol-1-2[
-[.center.width-90[![funcX-light](figures/funcX-light.png)]](https://funcx.readthedocs.io/en/latest/)
+[.center.width-80[![funcX-light](figures/funcX-light.png)]](https://funcx.readthedocs.io/en/latest/)
 - High-performance FaaS platform
 - Allows users to register and then execute Python functions in "serverless supercomputing" workflow
 ]
