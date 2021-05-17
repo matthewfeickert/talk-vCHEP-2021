@@ -149,7 +149,7 @@ config = Config(
 ]
 
 ---
-# Scheduling with funcX: Define user functions
+# Execution with funcX: Define user functions
 
 .kol-2-3[
 .tiny[
@@ -198,7 +198,7 @@ def infer_hypotest(workspace, metadata, patches):
 ]
 
 ---
-# Scheduling with funcX: Register and run functions
+# Execution with funcX: Register and run functions
 
 .kol-2-3[
 .tiny[
@@ -218,7 +218,6 @@ def main(args):
 
     # register functions
     prepare_func = fxc.register_function(prepare_workspace)
-    infer_func = fxc.register_function(infer_hypotest)
 
     # execute background only workspace
     bkgonly_workspace = json.load(bkgonly_json)
@@ -246,6 +245,57 @@ def main(args):
 - While the job run on the remote HPC system, can make periodic requests for finished results
    - `fxc.get_result(...)`
    - Returning the _output_ of the user defined functions
+]
+
+---
+# Execution with funcX: Scaling out jobs
+
+.kol-2-3[
+.tiny[
+```python
+...
+
+    # register functions
+    infer_func = fxc.register_function(infer_hypotest)
+
+    patchset = pyhf.PatchSet(json.load(patchset_json))
+
+    # execute patch fits across workers and retrieve them when done
+    n_patches = len(patchset.patches)
+    tasks = {}
+    for patch_idx in range(n_patches):
+        patch = patchset.patches[patch_idx]
+        task_id = fxc.run(
+            workspace,
+            patch.metadata,
+            [patch.patch],
+            endpoint_id=pyhf_endpoint,
+            function_id=infer_func,
+        )
+        tasks[patch.name] = {"id": task_id, "result": None}
+
+    while count_complete(tasks.values()) < n_patches:
+        for task in tasks.keys():
+            if not tasks[task]["result"]:
+                try:
+                    result = fxc.get_result(tasks[task]["id"])
+                    tasks[task]["result"] = result
+                except Exception as excep:
+                    print(f"inference: {excep}")
+                    sleep(15)
+
+...
+```
+]
+]
+.kol-1-3[
+- The workflow
+   - `fx.register_function(...)`
+   - `fx.run(...)`
+
+ can now be used to scale out .bold[as many custom functions as the workers can handle]
+- This allows for all the signal patches (model hypotheses) in a full analysis to be .bold[run simultaneously across HPC workers]
+- The user analyst has .bold[written only simple pure Python] (no system specific configuration files needed)
 ]
 
 ---
