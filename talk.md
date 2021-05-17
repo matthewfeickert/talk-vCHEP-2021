@@ -102,7 +102,7 @@ NCSA/Illinois
 # funcX Endpoints on HPC
 
 .kol-2-5[
-- funcX endpoint: logical entity that represents a compute resource
+- [funcX endpoint](https://funcx.readthedocs.io/en/stable/endpoints.html): logical entity that represents a compute resource
 - Managed by an agent process allowing the funcX service to dispatch user defined functions to resources for execution
 - Agent handles:
    - Authentication and authorization
