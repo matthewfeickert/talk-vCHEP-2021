@@ -149,35 +149,52 @@ config = Config(
 ]
 
 ---
-# Scheduling with funcX
+# Scheduling with funcX: User functions
 
 .kol-2-3[
+.tiny[
 ```python
 import json
-from pathlib import Path
 from time import sleep
 
+import pyhf
 from funcx.sdk.client import FuncXClient
 from pyhf.contrib.utils import download
 
 
 def prepare_workspace(data):
     import pyhf
+    pyhf.set_backend("jax")
 
     return pyhf.Workspace(data)
 
-if __name__ == "__main__":
-    fxc = FuncXClient()
-    # Register function and execute on worker node
-    prepare_func = fxc.register_function(prepare_workspace):w
-    prepare_task = fxc.run(
-        bkgonly_workspace, endpoint_id=pyhf_endpoint, function_id=prepare_func
-    )
+
+def infer_hypotest(workspace, metadata, patches):
+    import time
+    import pyhf
+    pyhf.set_backend("jax")
+
+    tick = time.time()
+    model = workspace.model(...)
+    data = workspace.data(model)
+    test_poi = 1.0
+    return {
+        "metadata": metadata,
+        "CLs_obs": float(
+            pyhf.infer.hypotest(test_poi, data, model, test_stat="qtilde")
+        ),
+        "Fit-Time": time.time() - tick,
+    }
+
+...
 ```
 ]
+]
 .kol-1-3[
-- Points walking through code
-- Need to also fixup the code to make it fit
+    <br><br>
+- As the analyst user, _define the functions_ that you want the funcX endpoint to execute
+- These are run as _individual jobs_ and so require all dependencies to be defined inside them
+   - e.g. `import pyhf`
 ]
 
 ---
