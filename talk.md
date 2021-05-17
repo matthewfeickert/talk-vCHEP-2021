@@ -101,11 +101,51 @@ NCSA/Illinois
 ---
 # funcX Endpoints on HPC
 
-.kol-1-2[
+.kol-2-5[
 - funcX endpoint: logical entity that represents a compute resource
+- Managed by an agent process allowing the funcX service to dispatch user defined functions to resources for execution
+- Agent handles:
+   - Authentication and authorization
+   - Provisioning of nodes on the compute resource
+   - Monitoring and management
+- .bold[Would be great to have a figure go here instead]
 ]
-.kol-1-2[
-- .bold[Would be great to have a figure go here]
+.kol-3-5[
+<!--  -->
+.tiny[
+```python
+from funcx_endpoint.endpoint.utils.config import Config
+from funcx_endpoint.executors import HighThroughputExecutor
+
+from parsl.providers import LocalProvider
+
+...
+
+config = Config(
+    executors=[
+        HighThroughputExecutor(
+            label="fe.cs.uchicago",
+            address=address_by_hostname(),
+            provider=SlurmProvider(
+                channel=LocalChannel(),
+                nodes_per_block=NODES_PER_JOB,
+                init_blocks=1,
+                partition="general",
+                launcher=SrunLauncher(
+                    overrides=(
+                        f"hostname; srun --ntasks={TOTAL_WORKERS} "
+                        f"--ntasks-per-node={WORKERS_PER_NODE} "
+                        f"--gpus-per-task=rtx2080ti:{GPUS_PER_WORKER} "
+                        f"--gpu-bind=map_gpu:{GPU_MAP}"
+                    )
+                ),
+                walltime="01:00:00",
+            ),
+        )
+    ],
+)
+```
+]
 ]
 
 ---
