@@ -357,7 +357,24 @@ sys	 0m1.561s
 ---
 # Performance
 
-- Add results table
+.bold[
+Fit times for analyses using `pyhf`'s NumPy backend and SciPy optimizer orchestrated with `funcX` on RIVER over 10 trials compared to a single RIVER node.
+The reported wall fit time is the mean wall fit time of the trials.
+The uncertainty on the mean wall time corresponds to the standard deviation of the wall fit times.
+The number of worker nodes used is approximate as per-run reporting is not available.
+]
+
+<!-- Output of `$python scripts/build_table.py` -->
+
+.huge[
+
+| Analysis                       |   Patches    | |   Workers                  | Wall time (sec)   |   Single node (sec) |
+|:-------------------------------|-------------:|-|---------------------------:|:------------------|--------------------:|
+| Eur. Phys. J. C 80 (2020) 691  |          125 | |                       85 | $156.2\pm9.5$     |                3842 |
+| JHEP 06 (2020) 46              |           76 | |                        85 | $31.2\pm2.7$      |                 114 |
+| Phys. Rev. D 101 (2020) 032009 |           57 | |                        85 | $57.4\pm5.2$      |                 612 |
+
+]
 
 ---
 # Summary
