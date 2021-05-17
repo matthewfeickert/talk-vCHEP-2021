@@ -62,26 +62,38 @@ NCSA/Illinois
 ]
 
 ---
-# Problem statement
+# Fitting as a Service with `pyhf` on HPCs
 
+.kol-1-2[
 - HPC facilities provide an opportunity to efficiently perform the statistical inference of LHC data
 - Can pose problems with orchestration and efficient scheduling
-- We can present a framework
-- ...
-- Throw in physics motivation for pMSSM scans and pseudo-experiments
+- Want to leverage pyhf hardware accelerated backends at HPC sites for real analysis speedup
+   - Reduce fitting time from hours to minutes
+- Deploy a _(fitting) Function as a Service_ (FaaS) powered through funcX
+- Example use cases:
+   - Large scale ensemble fits for statistical combinations
+   - Large dimensional scans of theory parameter space (e.g. pMSSM scans)
+   - Pseudo-experiment generation ("toys")
+]
+.kol-1-2[
+ .center.width-100[![carbon_pyhf_HVTWZ_3500_fit](figures/carbon_pyhf_HVTWZ_3500_fit.png)]
+ ATLAS workspace that takes over an hour on ROOT fit in under 2 minutes with pyhf on GPU
+]
+
+
 
 ---
 # Fitting as a Service Methods and Technologies
 
 .kol-1-2[
-[.center.width-50[![pyhf-logo](https://raw.githubusercontent.com/scikit-hep/pyhf/master/docs/_static/img/pyhf-logo-small.png)]](https://pyhf.readthedocs.io/)
+.center.width-50[[![pyhf-logo](https://raw.githubusercontent.com/scikit-hep/pyhf/master/docs/_static/img/pyhf-logo-small.png)](https://pyhf.readthedocs.io/)]
 - Pure Python implementation of the `HistFactory` statistical specification for multi-bin histogram-based analysis
 - Supports multiple computational backends and optimizers (defaults of NumPy and SciPy)
 - JAX, TensorFlow, and PyTorch backends can leverage _hardware acceleration_ (GPUs, TPUs) and _automatic differentiation_
 - Can outperform C++ implementations of `HistFactory`
 ]
 .kol-1-2[
-[.center.width-80[![funcX-light](figures/funcX-light.png)]](https://funcx.readthedocs.io/en/latest/)
+.center.width-80[[![funcX-light](figures/funcX-light.png)](https://funcx.readthedocs.io/en/latest/)]
 - High-performance FaaS platform
 - Designed to orchestrate _scientific workloads_ across _heterogeneous computing resources_ (clusters, clouds, and supercomputers)
 - Leverages [Parsl](https://parsl.readthedocs.io/) for efficient parallelism and managing concurrent task execution
