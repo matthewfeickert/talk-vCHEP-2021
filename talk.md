@@ -295,15 +295,64 @@ def main(args):
 
  can now be used to scale out .bold[as many custom functions as the workers can handle]
 - This allows for all the signal patches (model hypotheses) in a full analysis to be .bold[run simultaneously across HPC workers]
-- The user analyst has .bold[written only simple pure Python] (no system specific configuration files needed)
+   - Run from anywhere (e.g. laptop)!
+- The user analyst has .bold[written only simple pure Python]
+   - No system specific configuration files needed
 ]
 
 ---
 # Scaling of Statistical Inference
 
-- RIVER
-- NCSA Bluewaters (CPU)
-- XSEDE Expanse (GPU JAX)
+.kol-1-2[
+- .bold[Example]: Fitting all 125 models from `pyhf` pallet for [published ATLAS SUSY 1Lbb analysis](https://www.hepdata.net/record/ins1755298)
+   - DOI: https://doi.org/10.17182/hepdata.90607
+- Wall time .bold[under 2 minutes 30 seconds]
+   - Downloading of `pyhf` pallet from HEPData (local machine)
+   - Registering functions (local machine)
+   - Sending serialization to funcX endpoint (remote HPC)
+   - funcX executing all jobs (remote HPC)
+   - funcX retrieving finished job output (local machine)
+- Deployments of funcX endpoints currently used for testing
+   - University of Chicago River HPC cluster (CPU)
+   - NCSA Bluewaters (CPU)
+   - XSEDE Expanse (GPU JAX)
+]
+.kol-1-2[
+.tiny[
+```
+feickert@ThinkPad-X1:~$ time python fit_analysis.py -c config/1Lbb.json
+prepare: waiting-for-ep
+prepare: waiting-for-ep
+--------------------
+<pyhf.workspace.Workspace object at 0x7fb4cfe614f0>
+Task C1N2_Wh_hbb_1000_0 complete, there are 1 results now
+Task C1N2_Wh_hbb_1000_100 complete, there are 2 results now
+Task C1N2_Wh_hbb_1000_150 complete, there are 3 results now
+Task C1N2_Wh_hbb_1000_200 complete, there are 4 results now
+Task C1N2_Wh_hbb_1000_250 complete, there are 5 results now
+Task C1N2_Wh_hbb_1000_300 complete, there are 6 results now
+Task C1N2_Wh_hbb_1000_350 complete, there are 7 results now
+Task C1N2_Wh_hbb_1000_400 complete, there are 8 results now
+Task C1N2_Wh_hbb_1000_50 complete, there are 9 results now
+Task C1N2_Wh_hbb_150_0 complete, there are 10 results now
+...
+Task C1N2_Wh_hbb_900_150 complete, there are 119 results now
+Task C1N2_Wh_hbb_900_200 complete, there are 120 results now
+inference: waiting-for-ep
+Task C1N2_Wh_hbb_900_300 complete, there are 121 results now
+Task C1N2_Wh_hbb_900_350 complete, there are 122 results now
+Task C1N2_Wh_hbb_900_400 complete, there are 123 results now
+Task C1N2_Wh_hbb_900_50 complete, there are 124 results now
+Task C1N2_Wh_hbb_900_250 complete, there are 125 results now
+--------------------
+...
+
+real	2m17.509s
+user	0m6.465s
+sys	 0m1.561s
+```
+]
+]
 
 ---
 # Performance
