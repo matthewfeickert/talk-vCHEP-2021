@@ -149,7 +149,7 @@ config = Config(
 ]
 
 ---
-# Scheduling with funcX: User functions
+# Scheduling with funcX: Define user functions
 
 .kol-2-3[
 .tiny[
@@ -195,6 +195,57 @@ def infer_hypotest(workspace, metadata, patches):
 - As the analyst user, _define the functions_ that you want the funcX endpoint to execute
 - These are run as _individual jobs_ and so require all dependencies to be defined inside them
    - e.g. `import pyhf`
+]
+
+---
+# Scheduling with funcX: Register and run functions
+
+.kol-2-3[
+.tiny[
+```python
+...
+
+def main(args):
+
+    ...
+
+    # Initialize funcX client
+    fxc = FuncXClient()
+    fxc.max_requests = 200
+
+    with open("endpoint_id.txt") as endpoint_file:
+        pyhf_endpoint = str(endpoint_file.read().rstrip())
+
+    # register functions
+    prepare_func = fxc.register_function(prepare_workspace)
+    infer_func = fxc.register_function(infer_hypotest)
+
+    # execute background only workspace
+    bkgonly_workspace = json.load(bkgonly_json)
+    prepare_task = fxc.run(
+        bkgonly_workspace, endpoint_id=pyhf_endpoint, function_id=prepare_func
+    )
+
+    workspace = None
+    while not workspace:
+        try:
+            workspace = fxc.get_result(prepare_task)
+        except Exception as excep:
+            print(f"prepare: {excep}")
+            sleep(10)
+
+...
+```
+]
+]
+.kol-1-3[
+- With the user functions defined, they can then be _registered_ with the _`funcX` client_ locally
+   - `fx.register_function(...)`
+- The local `funcX` client can then execute the request to the remote `funcX` endpoint, handling all communication and authentication required
+   - `fx.run(...)`
+- While the job run on the remote HPC system, can make periodic requests for finished results
+   - `fxc.get_result(...)`
+   - Returning the _output_ of the user defined functions
 ]
 
 ---
