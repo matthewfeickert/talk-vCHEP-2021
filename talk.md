@@ -80,8 +80,6 @@ NCSA/Illinois
  ATLAS workspace that takes over an hour on ROOT fit in under 2 minutes with pyhf on GPU
 ]
 
-
-
 ---
 # Fitting as a Service Methods and Technologies
 
@@ -95,9 +93,19 @@ NCSA/Illinois
 .kol-1-2[
 .center.width-80[[![funcX-light](figures/funcX-light.png)](https://funcx.readthedocs.io/en/latest/)]
 - High-performance FaaS platform
-- Designed to orchestrate _scientific workloads_ across _heterogeneous computing resources_ (clusters, clouds, and supercomputers)
+- Designed to orchestrate _scientific workloads_ across _heterogeneous computing resources_ (clusters, clouds, and supercomputers) and task execution providers (HTCondor, Slurm, Torque, and Kubernetes)
 - Leverages [Parsl](https://parsl.readthedocs.io/) for efficient parallelism and managing concurrent task execution
 - Allows users to register and then execute Python functions in "serverless supercomputing" workflow
+]
+
+---
+# funcX Endpoints on HPC
+
+.kol-1-2[
+- funcX endpoint: logical entity that represents a compute resource
+]
+.kol-1-2[
+- .bold[Would be great to have a figure go here]
 ]
 
 ---
