@@ -41,8 +41,11 @@ def main():
                 "Phys. Rev. D 101 (2020) 032009",
             ],
             patches=[125, 76, 57],
+            _spacer_A="",
             worker_nodes=[85, 85, 85],
+            _spacer_B="",
             mean_wall_time=mean_wall_time,
+            _spacer_C="",
             single_node_time=single_node_time,
         )
     )
@@ -57,9 +60,12 @@ def main():
     performance_table_markdown = table_data.to_markdown(
         headers=[
             "Analysis",
-            "Patches   ",
-            "Workers                 ",
+            "Patches",
+            "",
+            "Workers",
+            "",
             "Wall time (sec)",
+            "",
             "Single node (sec)",
         ],
         index=False,
