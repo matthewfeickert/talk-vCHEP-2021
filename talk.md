@@ -78,6 +78,7 @@ NCSA/Illinois
 .kol-1-2[
  .center.width-100[![carbon_pyhf_HVTWZ_3500_fit](figures/carbon_pyhf_HVTWZ_3500_fit.png)]
  ATLAS workspace that takes over an hour on ROOT fit in under 2 minutes with pyhf on GPU
+ .bold[TODO: VERIFY THIS HOUR NUMBER AGAIN]
 ]
 
 ---
