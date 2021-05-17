@@ -2,3 +2,9 @@ talk.pdf
 
 .ipynb_checkpoints/
 example_code/plots/
+
+# VSCode
+.vscode/
+
+# temporary output files
+performance_table.md
