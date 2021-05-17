@@ -364,7 +364,7 @@ The uncertainty on the mean wall time corresponds to the standard deviation of t
 The number of worker nodes used is approximate as per-run reporting is not available.
 ]
 
-<!-- Output of `$python scripts/build_table.py` -->
+<!-- Table is not made by hand. It is the copied output of `python scripts/build_table.py` -->
 
 .huge[
 
@@ -382,8 +382,13 @@ The number of worker nodes used is approximate as per-run reporting is not avail
 ---
 # Summary
 
-- Demonstrated the ability to parallelize and accelerate statistical inference of physics analyses on
-HPC systems through a FaaS solution
+- Through the combined use of the pure-Python libraries `funcX` and `pyhf`, demonstrated the ability to parallelize and accelerate statistical inference of physics analyses on HPC systems through a FaaS solution
+- Without having to write any bespoke batch jobs, inference can be registered and executed by analysts with a client Python API that still achieves the large performance gains compared to single node execution that is a typical motivation of use of batch systems.
+- Allows for transparently switching workflows from CPU to GPU environments
+- Motivates investigation of the scaling performance for large scale ensemble fits in the case of statistical combinations of analyses and large dimensional scans of theory parameter space (e.g. phenomenological minimal supersymmetric standard model (pMSSM) scans)
+
+<br><br>
+.center.bold[Summary needs work and revision. Ideally also a figure.]
 
 ---
 class: end-slide, center
