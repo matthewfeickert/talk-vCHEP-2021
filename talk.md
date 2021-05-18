@@ -116,33 +116,34 @@ NCSA/Illinois
 .tiny[
 ```python
 from funcx_endpoint.endpoint.utils.config import Config
-from funcx_endpoint.executors import HighThroughputExecutor
-
-from parsl.providers import LocalProvider
-
 ...
+
+user_opts = {
+    "expanse": {
+        "worker_init": ". ~/setup_expanse_funcx_test_env.sh",
+        "scheduler_options": "#SBATCH --gpus=1",
+    }
+}
 
 config = Config(
     executors=[
         HighThroughputExecutor(
-            label="fe.cs.uchicago",
+            label="Expanse_GPU",
             address=address_by_hostname(),
             provider=SlurmProvider(
-                channel=LocalChannel(),
-                nodes_per_block=NODES_PER_JOB,
+                "gpu",  # Partition / QOS
+                account="nsa106",
+                nodes_per_block=1,
+                max_blocks=4,
                 init_blocks=1,
-                partition="general",
-                launcher=SrunLauncher(
-                    overrides=(
-                        f"hostname; srun --ntasks={TOTAL_WORKERS} "
-                        f"--ntasks-per-node={WORKERS_PER_NODE} "
-                        f"--gpus-per-task=rtx2080ti:{GPUS_PER_WORKER} "
-                        f"--gpu-bind=map_gpu:{GPU_MAP}"
-                    )
-                ),
-                walltime="01:00:00",
+                mem_per_node=96,
+                scheduler_options=user_opts["expanse"]["scheduler_options"],
+                worker_init=user_opts["expanse"]["worker_init"],
+                launcher=SrunLauncher(),
+                walltime="00:10:00",
+                cmd_timeout=120,
             ),
-        )
+        ),
     ],
 )
 ```
