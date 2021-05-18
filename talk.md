@@ -163,17 +163,18 @@ from funcx.sdk.client import FuncXClient
 from pyhf.contrib.utils import download
 
 
-def prepare_workspace(data):
+def prepare_workspace(data, backend):
     import pyhf
-    pyhf.set_backend("jax")
 
+    pyhf.set_backend(backend)
     return pyhf.Workspace(data)
 
 
-def infer_hypotest(workspace, metadata, patches):
+def infer_hypotest(workspace, metadata, patches, backend):
     import time
     import pyhf
-    pyhf.set_backend("jax")
+
+    pyhf.set_backend(backend)
 
     tick = time.time()
     model = workspace.model(...)
@@ -235,7 +236,7 @@ def main(args):
     # execute background only workspace
     bkgonly_workspace = json.load(bkgonly_json)
     prepare_task = fxc.run(
-        bkgonly_workspace, endpoint_id=pyhf_endpoint, function_id=prepare_func
+        bkgonly_workspace, backend, endpoint_id=pyhf_endpoint, function_id=prepare_func
     )
 
     workspace = None
@@ -282,6 +283,7 @@ def main(args):
             workspace,
             patch.metadata,
             [patch.patch],
+            backend,
             endpoint_id=pyhf_endpoint,
             function_id=infer_func,
         )
