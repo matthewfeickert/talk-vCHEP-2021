@@ -27,8 +27,12 @@ selu_jit = jit(selu)
 """
 
     number_trials = 10000
-    timeit_result = timeit.timeit("selu(x)", setup=setup, number=number_trials)
+    timeit_result = timeit.timeit(
+        "selu(x).block_until_ready()", setup=setup, number=number_trials
+    )
     print(f"normal: {timeit_result / number_trials}")
 
-    timeit_result = timeit.timeit("selu_jit(x)", setup=setup_jit, number=number_trials)
+    timeit_result = timeit.timeit(
+        "selu_jit(x).block_until_ready()", setup=setup_jit, number=number_trials
+    )
     print(f"JIT: {timeit_result / number_trials}")
