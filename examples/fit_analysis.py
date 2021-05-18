@@ -8,20 +8,20 @@ from funcx.sdk.client import FuncXClient
 from pyhf.contrib.utils import download
 
 
-def prepare_workspace(data):
+def prepare_workspace(data, backend):
     import pyhf
 
-    pyhf.set_backend("jax")
+    pyhf.set_backend(backend)
 
     return pyhf.Workspace(data)
 
 
-def infer_hypotest(workspace, metadata, patches):
+def infer_hypotest(workspace, metadata, patches, backend):
     import time
 
     import pyhf
 
-    pyhf.set_backend("jax")
+    pyhf.set_backend(backend)
 
     tick = time.time()
     model = workspace.model(
@@ -50,6 +50,8 @@ def main(args):
     if args.config_file is not None:
         with open(args.config_file, "r") as infile:
             config = json.load(infile)
+
+    backend = args.backend
 
     pallet_path = Path(config["input_prefix"]).joinpath(config["pallet_name"])
 
@@ -80,7 +82,7 @@ def main(args):
 
     # execute background only workspace
     prepare_task = fxc.run(
-        bkgonly_workspace, endpoint_id=pyhf_endpoint, function_id=prepare_func
+        bkgonly_workspace, backend, endpoint_id=pyhf_endpoint, function_id=prepare_func
     )
 
     # Read patchset in while background only workspace running
@@ -109,6 +111,7 @@ def main(args):
             workspace,
             patch.metadata,
             [patch.patch],
+            backend,
             endpoint_id=pyhf_endpoint,
             function_id=infer_func,
         )
@@ -142,6 +145,14 @@ if __name__ == "__main__":
         type=str,
         default=None,
         help="config file",
+    )
+    cli_parser.add_argument(
+        "-b",
+        "--backend",
+        dest="backend",
+        type=str,
+        default="numpy",
+        help="pyhf backend str alias",
     )
     args, unknown = cli_parser.parse_known_args()
 
