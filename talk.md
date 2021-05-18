@@ -395,6 +395,45 @@ The number of worker nodes used is approximate as per-run reporting is not avail
 .center.bold[This slide is temporary and should be improved on]
 
 ---
+# Constraints and Trade-offs
+
+.kol-2-5[
+- The nature of FaaS that makes it highly scalable also leads to a problem for taking advantage of just-in-time (JIT) compiled functions
+- To leverage JITed functions there needs to be .bold[memory that is preserved across invocations] of that function
+- Nature of FaaS: Each function call is self contained and .bold[doesn't know about global state]
+   - `funcX` endpoint listens on a queue and invokes functions
+]
+.kol-3-5[
+.tiny[
+```ipython
+In [1]: import jax.numpy as jnp
+   ...: from jax import jit, random
+
+In [2]: def selu(x, alpha=1.67, lmbda=1.05):
+   ...:     return lmbda * jnp.where(x > 0, x, alpha * jnp.exp(x) - alpha)
+   ...:
+
+In [3]: key = random.PRNGKey(0)
+   ...: x = random.normal(key, (1000000,))
+
+In [4]: %timeit selu(x)
+850 µs ± 35.4 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+
+In [5]: selu_jit = jit(selu)
+
+In [6]: %timeit selu_jit(x)
+17.2 µs ± 105 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+```
+]
+.center[50X speedup from JIT]
+]
+.kol-1-1[
+- Thoughts for future: Is it possible to create setup and tear down functionality to improve parallelized fitting?
+   - Setup: Send function(s) to JIT and keep them in state
+   - Tear down: Once jobs are finished clean up state
+]
+
+---
 # Summary
 
 - Through the combined use of the pure-Python libraries `funcX` and `pyhf`, demonstrated the ability to parallelize and accelerate statistical inference of physics analyses on HPC systems through a FaaS solution
