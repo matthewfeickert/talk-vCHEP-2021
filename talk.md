@@ -153,8 +153,7 @@ config = Config(
 # funcX Endpoints on HPC: Config Example
 
 .kol-1-2[
-Example of Parsl `HighThroughputExecutor` config that funcX extends (taken from [Parsl docs](https://parsl.readthedocs.io/en/1.1.0/userguide/execution.html#configuration))
-<br>
+Example Parsl `HighThroughputExecutor` config (from [Parsl docs](https://parsl.readthedocs.io/en/1.1.0/userguide/execution.html#configuration)) that .bold[funcX extends]
 
 .tiny[
 ```python
