@@ -252,9 +252,9 @@ def main(args):
 ]
 ]
 .kol-1-3[
-- With the user functions defined, they can then be _registered_ with the _`funcX` client_ locally
+- With the user functions defined, they can then be _registered_ with the _funcX client_ locally
    - `fx.register_function(...)`
-- The local `funcX` client can then execute the request to the remote `funcX` endpoint, handling all communication and authentication required
+- The local funcX client can then execute the request to the remote funcX endpoint, handling all communication and authentication required
    - `fx.run(...)`
 - While the job run on the remote HPC system, can make periodic requests for finished results
    - `fxc.get_result(...)`
@@ -435,7 +435,7 @@ feickert@ThinkPad-X1:~$ jq .C1N2_Wh_hbb_1000_0.CLs_obs results.json
 # Performance
 
 .bold[
-Fit times for analyses using `pyhf`'s NumPy backend and SciPy optimizer orchestrated with `funcX` on RIVER over 10 trials compared to a single RIVER node.
+Fit times for analyses using `pyhf`'s NumPy backend and SciPy optimizer orchestrated with funcX on RIVER over 10 trials compared to a single RIVER node.
 The reported wall fit time is the mean wall fit time of the trials.
 The uncertainty on the mean wall time corresponds to the standard deviation of the wall fit times.
 The number of worker nodes used is approximate as per-run reporting is not available.
@@ -463,7 +463,7 @@ The number of worker nodes used is approximate as per-run reporting is not avail
 - The nature of FaaS that makes it highly scalable also leads to a problem for taking advantage of just-in-time (JIT) compiled functions
 - To leverage JITed functions there needs to be .bold[memory that is preserved across invocations] of that function
 - Nature of FaaS: Each function call is self contained and .bold[doesn't know about global state]
-   - `funcX` endpoint listens on a queue and invokes functions
+   - funcX endpoint listens on a queue and invokes functions
 ]
 .kol-3-5[
 .tiny[
@@ -498,14 +498,15 @@ In [6]: %timeit selu_jit(x)
 ---
 # Summary
 
-- Through the combined use of the pure-Python libraries `funcX` and `pyhf`, demonstrated the ability to parallelize and accelerate statistical inference of physics analyses on HPC systems through a FaaS solution
+- Through the combined use of the pure-Python libraries funcX and `pyhf`, demonstrated the ability to parallelize and accelerate statistical inference of physics analyses on HPC systems through a FaaS solution
 - Without having to write any bespoke batch jobs, inference can be registered and executed by analysts with a client Python API that still achieves the large performance gains compared to single node execution that is a typical motivation of use of batch systems.
 - Allows for transparently switching workflows from CPU to GPU environments
 - Not currently able to leverage benefits of JITed operations
 - Motivates investigation of the scaling performance for large scale ensemble fits in the case of statistical combinations of analyses and large dimensional scans of theory parameter space (e.g. phenomenological minimal supersymmetric standard model (pMSSM) scans)
-
-<br><br>
-.center.bold[Summary needs work and revision. Ideally also a figure.]
+- All code used public and open source!
+   - `pyhf` ([GitHub](https://github.com/scikit-hep/pyhf))
+   - funcX ([GitHub](https://github.com/funcx-faas/funcX))
+   - Code used for studies shown ([GitHub](https://github.com/matthewfeickert/distributed-inference-with-pyhf-and-funcX))
 
 ---
 class: end-slide, center
@@ -518,9 +519,10 @@ class: end-slide, center
 <br>
 - "Thing X outperforms ROOT" isn't specific enough to be very helpful
 - All claims about performance against ROOT:
-- Made on ROOT `v6.22.02` or earlier
-- Made given HistFactory models (not against `WSMaker` or something similar)
+   - Made on ROOT `v6.22.02` or earlier
+   - Made given HistFactory models (not against `WSMaker` or something similar)
 - Still need to be tested against the recent ROOT `v6.24.00` release
+- For a fitting service like what is being done with funcX fair comparisons are extremely difficult to create, and so aren't reported directly here
 
 ---
 # Why use funcX as opposed to Dask?
