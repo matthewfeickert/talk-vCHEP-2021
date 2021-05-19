@@ -111,7 +111,7 @@ NCSA/Illinois
    - Monitoring and management
 ]
 .kol-3-5[
-<!--  -->
+
 .tiny[
 ```python
 from funcx_endpoint.endpoint.utils.config import Config
@@ -147,6 +147,50 @@ config = Config(
 )
 ```
 ]
+]
+
+---
+# funcX Endpoints on HPC: Config Example
+
+.kol-1-2[
+Example of Parsl `HighThroughputExecutor` config that funcX extends (taken from [Parsl docs](https://parsl.readthedocs.io/en/1.1.0/userguide/execution.html#configuration))
+<br>
+
+.tiny[
+```python
+from parsl.config import Config
+from libsubmit.providers.local.local import Local
+from parsl.executors import HighThroughputExecutor
+
+config = Config(
+    executors=[
+        HighThroughputExecutor(
+            label='local_htex',
+            workers_per_node=2,
+            provider=Local(
+                min_blocks=1,
+                init_blocks=1,
+                max_blocks=2,
+                nodes_per_block=1,
+                parallelism=0.5
+            )
+        )
+    ]
+)
+```
+]
+.tiny[
+- [block](https://parsl.readthedocs.io/en/1.1.0/userguide/execution.html#blocks): Basic unit of resources acquired from a provider
+- [`max_blocks`](https://parsl.readthedocs.io/en/1.1.0/userguide/execution.html#elasticity): Maximum number of blocks that can be active per executor
+- [`nodes_per_block`](https://parsl.readthedocs.io/en/1.1.0/userguide/execution.html#blocks): Number of nodes requested per block
+- [`parallelism`](https://parsl.readthedocs.io/en/1.1.0/userguide/execution.html#parallelism): Ratio of task execution capacity to the sum of running tasks and available tasks
+]
+]
+.kol-1-2[
+.center.width-100[[![parsl_parallelism](figures/parsl_parallelism.gif)](https://parsl.readthedocs.io/en/1.1.0/userguide/execution.html#configuration)]
+- 9 tasks to compute
+- Tasks are allocated to the first block until its `task_capacity` (here 4 tasks) reached
+- Task 5: First block full and <br>`5/9 > parallelism`<br>so Parsl provisions a new block for executing the remaining tasks
 ]
 
 ---
@@ -498,14 +542,15 @@ In [6]: %timeit selu_jit(x)
 ---
 # Summary
 
-- Through the combined use of the pure-Python libraries funcX and `pyhf`, demonstrated the ability to parallelize and accelerate statistical inference of physics analyses on HPC systems through a FaaS solution
+- Through the combined use of the pure-Python libraries .bold[funcX and `pyhf`], demonstrated the ability to .bold[parallelize and accelerate] statistical inference of physics analyses on HPC systems through a .bold[FaaS solution]
 - Without having to write any bespoke batch jobs, inference can be registered and executed by analysts with a client Python API that still achieves the large performance gains compared to single node execution that is a typical motivation of use of batch systems.
-- Allows for transparently switching workflows from CPU to GPU environments
+- Allows for transparently switching workflows from .bold[CPU to GPU] environments
 - Not currently able to leverage benefits of JITed operations
 - Motivates investigation of the scaling performance for large scale ensemble fits in the case of statistical combinations of analyses and large dimensional scans of theory parameter space (e.g. phenomenological minimal supersymmetric standard model (pMSSM) scans)
 - All code used public and open source!
    - `pyhf` ([GitHub](https://github.com/scikit-hep/pyhf))
    - funcX ([GitHub](https://github.com/funcx-faas/funcX))
+   - Parsl ([GitHub](https://github.com/Parsl/parsl))
    - Code used for studies shown ([GitHub](https://github.com/matthewfeickert/distributed-inference-with-pyhf-and-funcX))
 
 ---
