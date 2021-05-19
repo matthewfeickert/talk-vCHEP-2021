@@ -69,7 +69,7 @@ NCSA/Illinois
 - Can pose problems with orchestration and efficient scheduling
 - Want to leverage pyhf hardware accelerated backends at HPC sites for real analysis speedup
    - Reduce fitting time from hours to minutes
-- Deploy a _(fitting) Function as a Service_ (FaaS) powered through funcX
+- Deploy a _(fitting) Function as a Service_ (FaaS) powered through [funcX](https://funcx.readthedocs.io/en/latest/)
 - Example use cases:
    - Large scale ensemble fits for statistical combinations
    - Large dimensional scans of theory parameter space (e.g. pMSSM scans)
@@ -77,7 +77,7 @@ NCSA/Illinois
 ]
 .kol-1-2[
  .center.width-100[![carbon_pyhf_HVTWZ_3500_fit](figures/carbon_pyhf_HVTWZ_3500_fit.png)]
- ATLAS workspace that takes over an hour on ROOT fit in under 2 minutes with pyhf on GPU
+ ATLAS workspace that takes over an hour on ROOT fit in under 2 minutes with pyhf on local GPU
 ]
 
 ---
@@ -482,23 +482,23 @@ feickert@ThinkPad-X1:~$ jq .C1N2_Wh_hbb_1000_0.CLs_obs results.json
 Fit times for analyses using `pyhf`'s NumPy backend and SciPy optimizer orchestrated with funcX on RIVER over 10 trials compared to a single RIVER node.
 The reported wall fit time is the mean wall fit time of the trials.
 The uncertainty on the mean wall time corresponds to the standard deviation of the wall fit times.
-The number of worker nodes used is approximate as per-run reporting is not available.
+Given the variability in resources available on real clusters, the limits of resources requested (nodes per block and max blocks) offer the most useful worker comparison metrics.
 ]
 
 <!-- Table is not made by hand. It is the copied output of `python scripts/build_table.py` -->
 
-.huge[
+.large[
 
-| Analysis                       |   Patches |    |   Workers |    | Wall time (sec)   |    |   Single node (sec) |
-|:-------------------------------|----------:|:---|----------:|:---|:------------------|:---|--------------------:|
-| Eur. Phys. J. C 80 (2020) 691  |       125 |    |        85 |    | $156.2\pm9.5$     |    |                3842 |
-| JHEP 06 (2020) 46              |        76 |    |        85 |    | $31.2\pm2.7$      |    |                 114 |
-| Phys. Rev. D 101 (2020) 032009 |        57 |    |        85 |    | $57.4\pm5.2$      |    |                 612 |
+| Analysis                       |   Patches |    |   Nodes per block |    |   Max blocks |    | Wall time (sec)   |    |   Single node (sec) |
+|:-------------------------------|----------:|:---|------------------:|:---|-------------:|:---|:------------------|:---|--------------------:|
+| Eur. Phys. J. C 80 (2020) 691  |       125 |    |                 1 |    |            4 |    | $156.2\pm9.5$     |    |                3842 |
+| JHEP 06 (2020) 46              |        76 |    |                 1 |    |            4 |    | $31.2\pm2.7$      |    |                 114 |
+| Phys. Rev. D 101 (2020) 032009 |        57 |    |                 1 |    |            4 |    | $57.4\pm5.2$      |    |                 612 |
 
 ]
 
 <br><br>
-.center.bold[This slide is temporary and should be improved on]
+.center.bold[TODO: ADD BAR CHART]
 
 ---
 # Constraints and Trade-offs
