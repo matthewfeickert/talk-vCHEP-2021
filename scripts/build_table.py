@@ -32,6 +32,8 @@ def main():
             time = readfile.readlines()[0]
         single_node_time.append(convert_to_seconds(time))
 
+    river_config = {"max_blocks": 4, "nodes_per_block": 1}
+
     table_data = pd.DataFrame(
         dict(
             # analysis=["ATLAS SUSY 1Lbb", "ATLAS SUSY SS3L", "ATLAS SUSY staus"],
@@ -42,10 +44,12 @@ def main():
             ],
             patches=[125, 76, 57],
             _spacer_A="",
-            worker_nodes=[85, 85, 85],
+            nodes_per_block=[river_config["nodes_per_block"]] * 3,
             _spacer_B="",
-            mean_wall_time=mean_wall_time,
+            max_blocks=[river_config["max_blocks"]] * 3,
             _spacer_C="",
+            mean_wall_time=mean_wall_time,
+            _spacer_D="",
             single_node_time=single_node_time,
         )
     )
@@ -62,7 +66,9 @@ def main():
             "Analysis",
             "Patches",
             "",
-            "Workers",
+            "Nodes per block",
+            "",
+            "Max blocks",
             "",
             "Wall time (sec)",
             "",
