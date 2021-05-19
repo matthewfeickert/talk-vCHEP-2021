@@ -370,6 +370,68 @@ sys	 0m1.561s
 ]
 
 ---
+# Scaling of Statistical Inference
+
+.kol-1-2[
+- Remember, the returned output is just the .bold[function's return]
+- Our hypothesis test user function from earlier:
+
+.tiny[
+```python
+def infer_hypotest(workspace, metadata, patches, backend):
+    import time
+    import pyhf
+
+    pyhf.set_backend(backend)
+
+    tick = time.time()
+    model = workspace.model(...)
+    data = workspace.data(model)
+    test_poi = 1.0
+    return {
+        "metadata": metadata,
+        "CLs_obs": float(
+            pyhf.infer.hypotest(
+                test_poi, data, model, test_stat="qtilde"
+                )
+        ),
+        "Fit-Time": time.time() - tick,
+    }
+```
+]
+]
+.kol-1-2[
+- Allowing for easy and rapid serialization and manipulation of results
+- Time from submitting jobs to plot can be minutes
+<br>
+
+.tiny[
+```
+feickert@ThinkPad-X1:~$ python fit_analysis.py -c config/1Lbb.json > run.log
+# Some light file manipulation later to extract results.json from run.log
+feickert@ThinkPad-X1:~$ jq .C1N2_Wh_hbb_1000_0 results.json
+```
+```json
+{
+  "metadata": {
+    "name": "C1N2_Wh_hbb_1000_0",
+    "values": [
+      1000,
+      0
+    ]
+  },
+  "CLs_obs": 0.5856783708143126,
+  "Fit-Time": 28.786057233810425
+}
+```
+```
+feickert@ThinkPad-X1:~$ jq .C1N2_Wh_hbb_1000_0.CLs_obs results.json
+0.5856783708143126
+```
+]
+]
+
+---
 # Performance
 
 .bold[
