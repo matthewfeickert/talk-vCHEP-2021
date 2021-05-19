@@ -78,7 +78,6 @@ NCSA/Illinois
 .kol-1-2[
  .center.width-100[![carbon_pyhf_HVTWZ_3500_fit](figures/carbon_pyhf_HVTWZ_3500_fit.png)]
  ATLAS workspace that takes over an hour on ROOT fit in under 2 minutes with pyhf on GPU
- .bold[TODO: VERIFY THIS HOUR NUMBER AGAIN]
 ]
 
 ---
@@ -103,13 +102,13 @@ NCSA/Illinois
 # funcX Endpoints on HPC
 
 .kol-2-5[
+<br>
 - [funcX endpoint](https://funcx.readthedocs.io/en/stable/endpoints.html): logical entity that represents a compute resource
 - Managed by an agent process allowing the funcX service to dispatch user defined functions to resources for execution
 - Agent handles:
    - Authentication and authorization
    - Provisioning of nodes on the compute resource
    - Monitoring and management
-- .bold[Would be great to have a figure go here instead]
 ]
 .kol-3-5[
 <!--  -->
@@ -450,6 +449,16 @@ In [6]: %timeit selu_jit(x)
 class: end-slide, center
 
 .large[Backup]
+
+---
+# Specifics of ROOT comparisons
+
+<br>
+- "Thing X outperforms ROOT" isn't specific enough to be very helpful
+- All claims about performance against ROOT:
+- Made on ROOT `v6.22.02` or earlier
+- Made given HistFactory models (not against `WSMaker` or something similar)
+- Still need to be tested against the recent ROOT `v6.24.00` release
 
 ---
 # Why use funcX as opposed to Dask?
