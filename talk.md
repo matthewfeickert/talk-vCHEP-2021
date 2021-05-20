@@ -13,8 +13,6 @@ count: false
 
 May 20th, 2021
 
-.middle-logo[]
-
 ---
 # Authors
 
