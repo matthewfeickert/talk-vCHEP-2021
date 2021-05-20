@@ -25,7 +25,7 @@ def plot_times(
     x = np.arange(len(analyses))
     width = 0.35
 
-    ax.bar(x, mean_times, width=width, label="Mean wall time")
+    ax.bar(x, mean_times, width=width, label="Wall time")
     bin_bottom = np.array(mean_times) - np.array(mean_uncertainties)
     ax.bar(
         x,
@@ -40,7 +40,7 @@ def plot_times(
     )
     ax.bar(x + width, single_node_times, width=width, label="Single node")
 
-    text_left_edge = 0.60
+    text_left_edge = 0.66
     ax.text(
         text_left_edge, 0.68, "Nodes per block = 1", transform=ax.transAxes, size=10
     )
