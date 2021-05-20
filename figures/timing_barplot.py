@@ -9,7 +9,6 @@ from pathlib import Path
 rcParams.update({"font.size": 14})
 
 
-# def plot_times(cards, GCP_times, Azure_times, precision_type, max_time):
 def plot_times(
     analyses,
     mean_times,
