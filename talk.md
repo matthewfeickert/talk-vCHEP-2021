@@ -69,7 +69,7 @@ NCSA/Illinois
 - Can pose problems with orchestration and efficient scheduling
 - Want to leverage pyhf hardware accelerated backends at HPC sites for real analysis speedup
    - Reduce fitting time from hours to minutes
-- Deploy a _(fitting) Function as a Service_ (FaaS) powered through [funcX](https://funcx.readthedocs.io/en/latest/)
+- Deploy a .bold[(fitting) Function as a Service] (FaaS) powered through [funcX](https://funcx.readthedocs.io/en/latest/)
 - Example use cases:
    - Large scale ensemble fits for statistical combinations
    - Large dimensional scans of theory parameter space (e.g. pMSSM scans)
