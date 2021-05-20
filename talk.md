@@ -581,6 +581,11 @@ class: end-slide, center
 [.center.width-80[![Scaling Comparison](https://parsl.readthedocs.io/en/stable/_images/strong-scaling.png)]](https://parsl.readthedocs.io/en/stable/userguide/performance.html)
 
 ---
+# View of fitting FaaS Analysis Facility Blueprint
+
+.center.width-100[![infrastructure_perspective](figures/infrastructure_perspective.png)]
+
+---
 # References
 
 1. Lukas Heinrich, .italic[[Distributed Gradients for Differentiable Analysis](https://indico.cern.ch/event/960587/contributions/4070325/)], [Future Analysis Systems and Facilities Workshop](https://indico.cern.ch/event/960587/), 2020.
