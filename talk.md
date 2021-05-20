@@ -9,7 +9,7 @@ count: false
 <br><br>
 [matthew.feickert@cern.ch](mailto:matthew.feickert@cern.ch)
 
-[vCHEP 2021](https://indico.cern.ch/event/948465/)
+[vCHEP 2021](https://indico.cern.ch/event/948465/contributions/4324013/)
 
 May 20th, 2021
 
