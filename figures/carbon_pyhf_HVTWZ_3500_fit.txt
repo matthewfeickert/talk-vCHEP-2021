@@ -1,0 +1,19 @@
+$ nvidia-smi --list-gpus | awk 'NF{NF-=2};1'
+GPU 0: GeForce RTX 2080 Ti
+$ cat benchmarks/gpu/gpu_jax.txt
+# time pyhf cls --backend jax HVTWZ_3500.json
+
+{
+    "CLs_exp": [
+        0.07675154647551732,
+        0.17259685242090003,
+        0.3571957128757839,
+        0.6318389054097654,
+        0.8797833319522873
+    ],
+    "CLs_obs": 0.25668814241306653
+}
+
+real	0m53.790s
+user	0m59.982s
+sys	    0m4.725s
