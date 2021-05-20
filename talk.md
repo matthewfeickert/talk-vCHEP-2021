@@ -88,7 +88,7 @@ NCSA/Illinois
 - Pure Python implementation of the `HistFactory` statistical specification for multi-bin histogram-based analysis
 - Supports multiple computational backends and optimizers (defaults of NumPy and SciPy)
 - JAX, TensorFlow, and PyTorch backends can leverage _hardware acceleration_ (GPUs, TPUs) and _automatic differentiation_
-- Can outperform C++ implementations of `HistFactory`
+- Possible to outperform C++ implementations of `HistFactory`
 ]
 .kol-1-2[
 .center.width-80[[![funcX-light](figures/funcX-light.png)](https://funcx.readthedocs.io/en/latest/)]
