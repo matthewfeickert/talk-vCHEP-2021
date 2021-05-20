@@ -477,11 +477,14 @@ feickert@ThinkPad-X1:~$ jq .C1N2_Wh_hbb_1000_0.CLs_obs results.json
 ---
 # Performance
 
-.bold[
-Fit times for analyses using `pyhf`'s NumPy backend and SciPy optimizer orchestrated with funcX on RIVER over 10 trials compared to a single RIVER node.
-The reported wall fit time is the mean wall fit time of the trials.
-The uncertainty on the mean wall time corresponds to the standard deviation of the wall fit times.
-Given the variability in resources available on real clusters, the limits of resources requested (nodes per block and max blocks) offer the most useful worker comparison metrics.
+.kol-1-2[
+- Fit times for analyses using `pyhf`'s NumPy backend and SciPy optimizer orchestrated with funcX on RIVER over 10 trials compared to a single RIVER node
+- Reported wall fit time is the mean wall fit time of the trials
+   - Uncertainty on the mean wall time corresponds to the standard deviation of the wall fit times
+- Given the variability in resources available on real clusters, funcX config options governing resources requested (.bold[nodes per block] and .bold[max blocks]) offer most useful worker comparison metrics
+]
+.kol-1-2[
+.center.width-100[![linear](figures/timing_barplot_river.png)]
 ]
 
 <!-- Table is not made by hand. It is the copied output of `python scripts/build_table.py` -->
@@ -495,9 +498,6 @@ Given the variability in resources available on real clusters, the limits of res
 | Phys. Rev. D 101 (2020) 032009 |        57 |    |                 1 |    |            4 |    | $57.4\pm5.2$      |    |                 612 |
 
 ]
-
-<br><br>
-.center.bold[TODO: ADD BAR CHART]
 
 ---
 # Constraints and Trade-offs
