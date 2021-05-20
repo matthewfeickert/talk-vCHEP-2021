@@ -94,9 +94,9 @@ NCSA/Illinois
 .kol-2-5[
 <br>
 - [funcX endpoint](https://funcx.readthedocs.io/en/stable/endpoints.html): logical entity that represents a compute resource
-- Managed by an agent process allowing the funcX service to dispatch user defined functions to resources for execution
+- Managed by an agent process allowing the funcX service to dispatch .bold[user defined functions] to resources for execution
 - Agent handles:
-   - Authentication and authorization
+   - Authentication (Globus) and authorization
    - Provisioning of nodes on the compute resource
    - Monitoring and management
 ]
