@@ -9,11 +9,9 @@ count: false
 <br><br>
 [matthew.feickert@cern.ch](mailto:matthew.feickert@cern.ch)
 
-[vCHEP 2021](https://indico.cern.ch/event/948465/)
+[vCHEP 2021](https://indico.cern.ch/event/948465/contributions/4324013/)
 
 May 20th, 2021
-
-.middle-logo[]
 
 ---
 # Authors
@@ -94,9 +92,9 @@ NCSA/Illinois
 .kol-2-5[
 <br>
 - [funcX endpoint](https://funcx.readthedocs.io/en/stable/endpoints.html): logical entity that represents a compute resource
-- Managed by an agent process allowing the funcX service to dispatch user defined functions to resources for execution
+- Managed by an agent process allowing the funcX service to dispatch .bold[user defined functions] to resources for execution
 - Agent handles:
-   - Authentication and authorization
+   - Authentication (Globus) and authorization
    - Provisioning of nodes on the compute resource
    - Monitoring and management
 ]
@@ -531,17 +529,17 @@ In [6]: %timeit selu_jit(x)
 ---
 # Summary
 
-- Through the combined use of the pure-Python libraries .bold[funcX and `pyhf`], demonstrated the ability to .bold[parallelize and accelerate] statistical inference of physics analyses on HPC systems through a .bold[FaaS solution]
-- Without having to write any bespoke batch jobs, inference can be registered and executed by analysts with a client Python API that still achieves the large performance gains compared to single node execution that is a typical motivation of use of batch systems.
+- Through the combined use of the pure-Python libraries .bold[funcX and `pyhf`], demonstrated the ability to .bold[parallelize and accelerate] statistical inference of physics analyses on HPC systems through a .bold[(fitting) FaaS solution]
+- Without having to write any bespoke batch jobs, inference can be registered and executed by analysts with a client Python API that still .bold[achieves the large performance gains] compared to single node execution that is a typical motivation of use of batch systems.
 - Allows for transparently switching workflows from .bold[CPU to GPU] environments
    - Further performance testing ongoing
-- Not currently able to leverage benefits of JITed operations
-- Motivates investigation of the scaling performance for large scale ensemble fits in the case of statistical combinations of analyses and large dimensional scans of theory parameter space (e.g. phenomenological minimal supersymmetric standard model (pMSSM) scans)
-- All code used public and open source!
+- Not currently able to leverage benefits of .bold[JITed operations], but investigating further
+- .bold[Motivates investigation] of the scaling performance for large scale ensemble fits in the case of statistical combinations of analyses and large dimensional scans of theory parameter space (e.g. phenomenological minimal supersymmetric standard model (pMSSM) scans)
+- All code used .bold[public and open source]!
    - `pyhf` ([GitHub](https://github.com/scikit-hep/pyhf))
    - funcX ([GitHub](https://github.com/funcx-faas/funcX))
    - Parsl ([GitHub](https://github.com/Parsl/parsl))
-   - Code used for studies shown ([GitHub](https://github.com/matthewfeickert/distributed-inference-with-pyhf-and-funcX))
+   - Code for studies shown ([GitHub](https://github.com/matthewfeickert/distributed-inference-with-pyhf-and-funcX))
 
 ---
 class: end-slide, center
