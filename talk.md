@@ -413,7 +413,7 @@ sys	 0m1.561s
 ]
 
 ---
-# Scaling of Statistical Inference
+# Scaling of Statistical Inference: Results
 
 .kol-1-2[
 - Remember, the returned output is just the .bold[function's return]
@@ -478,7 +478,7 @@ feickert@ThinkPad-X1:~$ jq .C1N2_Wh_hbb_1000_0.CLs_obs results.json
 # Performance
 
 .kol-1-2[
-- Fit times for analyses using `pyhf`'s NumPy backend and SciPy optimizer orchestrated with funcX on RIVER over 10 trials compared to a single RIVER node
+- Fit times for analyses using `pyhf`'s NumPy backend and SciPy optimizer orchestrated with funcX on River HPC cluster (CPU) over 10 trials compared to a single RIVER node
 - Reported wall fit time is the mean wall fit time of the trials
    - Uncertainty on the mean wall time corresponds to the standard deviation of the wall fit times
 - Given the variability in resources available on real clusters, funcX config options governing resources requested (.bold[nodes per block] and .bold[max blocks]) offer most useful worker comparison metrics
