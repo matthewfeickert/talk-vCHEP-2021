@@ -532,16 +532,16 @@ In [6]: %timeit selu_jit(x)
 # Summary
 
 - Through the combined use of the pure-Python libraries .bold[funcX and `pyhf`], demonstrated the ability to .bold[parallelize and accelerate] statistical inference of physics analyses on HPC systems through a .bold[(fitting) FaaS solution]
-- Without having to write any bespoke batch jobs, inference can be registered and executed by analysts with a client Python API that still achieves the large performance gains compared to single node execution that is a typical motivation of use of batch systems.
+- Without having to write any bespoke batch jobs, inference can be registered and executed by analysts with a client Python API that still .bold[achieves the large performance gains] compared to single node execution that is a typical motivation of use of batch systems.
 - Allows for transparently switching workflows from .bold[CPU to GPU] environments
    - Further performance testing ongoing
-- Not currently able to leverage benefits of JITed operations
-- Motivates investigation of the scaling performance for large scale ensemble fits in the case of statistical combinations of analyses and large dimensional scans of theory parameter space (e.g. phenomenological minimal supersymmetric standard model (pMSSM) scans)
-- All code used public and open source!
+- Not currently able to leverage benefits of .bold[JITed operations], but investigating further
+- .bold[Motivates investigation] of the scaling performance for large scale ensemble fits in the case of statistical combinations of analyses and large dimensional scans of theory parameter space (e.g. phenomenological minimal supersymmetric standard model (pMSSM) scans)
+- All code used .bold[public and open source]!
    - `pyhf` ([GitHub](https://github.com/scikit-hep/pyhf))
    - funcX ([GitHub](https://github.com/funcx-faas/funcX))
    - Parsl ([GitHub](https://github.com/Parsl/parsl))
-   - Code used for studies shown ([GitHub](https://github.com/matthewfeickert/distributed-inference-with-pyhf-and-funcX))
+   - Code for studies shown ([GitHub](https://github.com/matthewfeickert/distributed-inference-with-pyhf-and-funcX))
 
 ---
 class: end-slide, center
