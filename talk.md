@@ -76,8 +76,8 @@ NCSA/Illinois
    - Pseudo-experiment generation ("toys")
 ]
 .kol-1-2[
- .center.width-100[![carbon_pyhf_HVTWZ_3500_fit](figures/carbon_pyhf_HVTWZ_3500_fit.png)]
- ATLAS workspace that takes over an hour on ROOT fit in under 2 minutes with pyhf on local GPU
+ .center.width-90[![carbon_pyhf_HVTWZ_3500_fit](figures/carbon_pyhf_HVTWZ_3500_fit.png)]
+ ATLAS workspace that takes over an hour on ROOT fit in under 1 minute with pyhf on local GPU
 ]
 
 ---
